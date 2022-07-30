@@ -1,3 +1,7 @@
+pipeline {
+    agent any
+    environment {
+        AWS_ACCOUNT_ID="239799717936"
         AWS_DEFAULT_REGION="us-east-1" 
         IMAGE_REPO_NAME="myrepo"
         IMAGE_TAG="latest:myrepo"
@@ -17,7 +21,7 @@
         
         stage('Cloning Git') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/sd031/aws_codebuild_codedeploy_nodeJs_demo.git']]])    
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/shivshashyaM/democlass.git']]])    
             }
         }
   
@@ -34,7 +38,7 @@
     stage('Pushing to ECR') {
      steps{  
          script {
-                sh "docker tag ${myrepo}:${latest:myrepo} ${REPOSITORY_URI}:$latest:myrepo"
+                sh "docker tag ${myrepo}:${latest:myrepo} ${https://github.com/shivshashyaM/democlass.git}:$latest:myrepo"
                 sh "docker push ${239799717936}.dkr.ecr.${us-east-1}.amazonaws.com/${myrepo}:${latest:myrepo}"
          }
         }
